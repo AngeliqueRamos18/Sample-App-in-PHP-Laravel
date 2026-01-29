@@ -97,16 +97,19 @@ button:hover {
 .success-message{
     background: #d4edda;
     color: #155724;
-    padding: 1rem;
+    padding: 0.50rem;
     border-radius: 5px;
     margin-bottom: 1rem;
     display: none;
+    opacity: 1;
+    transition: opacity 1s ease-out;
 }
+
+.success-message.hidden { opacity: 0; }
 
 .error-message {
     background: #f8d7da;
     color: #721c24;
-    padding: 1rem;
     border-radius: 5px;
     margin-bottom: 1rem;
     display: none;

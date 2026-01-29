@@ -9,40 +9,17 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    // Match your MSSQL table name
     protected $table = 'Users';
-
-    // Match your MSSQL primary key
     protected $primaryKey = 'Id';
-
-    // MSSQL uses CreatedAt, not Laravel's created_at/updated_at
     public $timestamps = false;
 
-    // Columns you want to allow mass assignment
-    protected $fillable = [
-        'Username',
-        'PasswordHash',
-        'CreatedAt',
-    ];
+    protected $fillable = ['Username', 'PasswordHash'];
 
-    // Hide sensitive fields when serializing
-    protected $hidden = [
-        'PasswordHash',
-    ];
+    protected $hidden = ['PasswordHash'];
 
-    /**
-     * Override the default password column used by Laravel Auth.
-     */
+    // Informs Laravel which column is the password
     public function getAuthPassword()
     {
         return $this->PasswordHash;
-    }
-
-    /**
-     * If you want to use Username instead of Email for login.
-     */
-    public function username()
-    {
-        return 'Username';
     }
 }

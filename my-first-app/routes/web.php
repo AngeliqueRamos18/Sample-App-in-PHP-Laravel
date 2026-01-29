@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +16,6 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/contact', function () {
     return view('contact');
@@ -31,7 +28,10 @@ Route::get('/customizelogin', function () {
 Route::Get('/register', function () {
     return view('register');
 });
+Route::get('/welcome', function () {
+    return view('welcome');
+})->middleware('auth');
 
 
 Route::post('/customizeLogin', [LoginController::class, 'login'])->name('customizeLogin');
-Route::post('/register/user', [AuthController::class, 'register'])->name('register');
+Route::post('/register', [RegisterController::class, 'register'])->name('register');

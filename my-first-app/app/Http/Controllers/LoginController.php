@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class LoginController extends Controller
 {
@@ -10,23 +12,20 @@ class LoginController extends Controller
     {
         // Validate the request data
         $credentials = $request->validate([
-            'username' => 'required|min:5',
-            'password' => 'required|min:6',
+            'username' => 'required|string',
+            'password' => 'required|string',
         ]);
 
-        // Attempt to authenticate the user
-        if (auth()->attempt($credentials)) {
-            // Authentication passed
-            return response()->json(['message' => 'Login successful'], 200);
+        // Attempt to authenticate using Laravel's Auth system
+        if (Auth::attempt([
+            'Username' => $credentials['username'],
+            'password' => $credentials['password'],
+        ])){
+            $request->session()->regenerate();
+            return redirect()->intended('/welcome')
+                             ->with('success', 'Login Successful!');
         }
 
-        // Authentication failed
-        return response()->json(['message' => 'Invalid credentials'], 401);
+        return back()->with('error', 'Invalid username or password.');
     }
-
-    public function username()
-    {
-        return 'Username';
-    }
-
 }
