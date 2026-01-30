@@ -25,11 +25,15 @@ Route::get('/customizelogin', function () {
     return view('customizelogin');
 });
 
-Route::Get('/register', function () {
+Route::get('/register', function () {
     return view('register');
 });
 Route::get('/welcome', function () {
     return view('welcome');
+})->middleware('auth');
+
+Route::get('/dashboard', function(){
+    return view('dashboard');
 })->middleware('auth');
 
 

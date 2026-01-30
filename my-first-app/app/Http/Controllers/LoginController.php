@@ -22,7 +22,7 @@ class LoginController extends Controller
             'password' => $credentials['password'],
         ])){
             $request->session()->regenerate();
-            return redirect()->intended('/welcome')
+            return redirect()->intended('/dashboard')
                              ->with('success', 'Login Successful!');
         }
 

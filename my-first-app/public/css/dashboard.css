@@ -1,0 +1,21 @@
+body{
+    font-family: 'Nunito', sans-serif;
+    background: #e8e4c9;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+}
+
+.content{
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.content-header h1{
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+.content h5{
+    font-size: 4vh;
+}
+
