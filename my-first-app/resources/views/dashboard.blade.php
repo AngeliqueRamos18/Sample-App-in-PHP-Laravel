@@ -1,35 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+{{-- dashboard.blade.php --}}
+@php
+    header("Cache-Control: no-cache, no-store, must-revalidate");
+    header("Pragma: no-cache");
+    header("Expires: 0");
+@endphp
 
-</head>
-<body>
+@extends('layouts.template')
+
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+@endsection
+
+@section('content')
+<!--Successful Login Toast-->
+@if(session('success'))
 <div class="toast-container border-0 top-0 end-0 p-3 mt-5">
-    <div class="toast show align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+    <div id="toastLoginSuccess" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="d-flex">
             <div class="toast-body">
-            Login Successful!
+            {{ session('success') }}
             </div>
             <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
     </div>
 </div>
-<!--Navbar-->
-@include('partials.navbar')
+@endif
+<!--End of Successful Login Toast-->
 
 <!--Main Content-->
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Dashboard</h1>
+                <h2>Dashboard</h2>
             </div>
             <div class="col-sm-6">
             </div>  
@@ -39,7 +42,7 @@
 
 <section class="content">
     <div class="container-fluid">
-        <div class="p-3 bg-white rounded shadow-sm">
+        <div class="p-3 rounded shadow-sm" style="background-color: #272b3d">
             <div class="row">
                 <div class="col-md-4">
                     <div class="card text-bg-primary">
@@ -86,7 +89,58 @@
     
     
 </section>
+
+<section class="content">
+    <div class="p-3 CardTableContainer">
+        <div class="card shadow-sm">
+            <div class="card-header bg-dark text-white">
+                <h6 class="mb-0">Sample Data Table</h6>
+            </div>
+            <div class="card-body table-wrapper">
+                <div class="table-responsive">
+                    <table class="table table-striped align-middle sample-table">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Created At</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Angel</td>
+                                <td>angel@example.com</td>
+                                <td>Admin</td>
+                                <td>2026-01-30</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>JohnDoe</td>
+                                <td>john@example.com</td>
+                                <td>User</td>
+                                <td>2026-01-29</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>JaneSmith</td>
+                                <td>jane@example.com</td>
+                                <td>Moderator</td>
+                                <td>2026-01-28</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </div>
-<script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-</body>
-</html>
+
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/dashboard.js') }}"></script>
+@endsection

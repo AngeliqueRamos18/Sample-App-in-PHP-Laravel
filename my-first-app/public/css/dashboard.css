@@ -1,16 +1,17 @@
 body{
     font-family: 'Nunito', sans-serif;
-    background: #e8e4c9;
+    overflow-y: auto;
+    background: #141b24;
     min-height: 100vh;
     margin: 0;
-    overflow: hidden;
 }
 
 .content{
     padding-left: 1rem;
     padding-right: 1rem;
 }
-.content-header h1{
+.content-header h2{
+    color: white;
     margin-top: 1rem;
     margin-left: 1rem;
 }
@@ -19,3 +20,23 @@ body{
     font-size: 4vh;
 }
 
+
+.CardTableContainer .card{
+    --bs-card-border-width:0px;
+    --bs-card-bg: #272b3d;
+}
+
+/* Limit table height and enable vertical scroll */
+/* Limit table height and enable vertical scroll */
+.table-wrapper {
+    max-height: 400px;         /* adjust as needed */
+    overflow-y: auto;
+}
+
+/* Optional: make header sticky */
+.table-wrapper thead th {
+    position: sticky;
+    top: 0;
+    background-color: #343a40;
+    z-index: 1;
+}

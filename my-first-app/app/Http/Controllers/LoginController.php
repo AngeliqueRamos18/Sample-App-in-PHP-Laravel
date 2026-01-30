@@ -8,6 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+
+    public function showLoginForm()
+    {
+        if(Auth::check()){
+            return redirect('/dashboard');
+        }
+        return view('customizeLogin');
+    }
+
     public function login(Request $request)
     {
         // Validate the request data
@@ -17,15 +26,14 @@ class LoginController extends Controller
         ]);
 
         // Attempt to authenticate using Laravel's Auth system
-        if (Auth::attempt([
-            'Username' => $credentials['username'],
-            'password' => $credentials['password'],
-        ])){
-            $request->session()->regenerate();
-            return redirect()->intended('/dashboard')
-                             ->with('success', 'Login Successful!');
-        }
+        if (Auth::attempt($credentials)) { $request->session()->regenerate(); return redirect()->intended('/dashboard') ->with('success', 'Login Successful!'); }
 
         return back()->with('error', 'Invalid username or password.');
     }
+
+    protected function redirectTo()
+    {
+        return '/dashboard';
+    }
+
 }

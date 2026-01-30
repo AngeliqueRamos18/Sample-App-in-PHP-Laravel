@@ -9,8 +9,9 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    protected $table = 'Users';
+    protected $table = 'users';
     protected $primaryKey = 'Id';
+    public $incrementing = true;
     public $timestamps = false;
 
     protected $fillable = ['Username', 'PasswordHash'];
@@ -22,4 +23,5 @@ class User extends Authenticatable
     {
         return $this->PasswordHash;
     }
+
 }
