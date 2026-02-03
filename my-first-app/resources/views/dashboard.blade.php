@@ -20,7 +20,6 @@
             <div class="toast-body">
             {{ session('success') }}
             </div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
     </div>
 </div>
@@ -94,7 +93,7 @@
     <div class="p-3 CardTableContainer">
         <div class="card shadow-sm">
             <div class="card-header bg-dark text-white">
-                <h6 class="mb-0">Sample Data Table</h6>
+                <h6 class="mb-0">Daily Scrum</h6>
             </div>
             <div class="card-body table-wrapper">
                 <div class="table-responsive">
@@ -103,33 +102,32 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Username</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Role</th>
-                                <th scope="col">Created At</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>1</td>
                                 <td>Angel</td>
-                                <td>angel@example.com</td>
-                                <td>Admin</td>
-                                <td>2026-01-30</td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">View</a>
+                                </td>
                             </tr>
                             <tr>
                                 <td>2</td>
                                 <td>JohnDoe</td>
-                                <td>john@example.com</td>
-                                <td>User</td>
-                                <td>2026-01-29</td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">View</a>
+                                </td>
                             </tr>
                             <tr>
                                 <td>3</td>
                                 <td>JaneSmith</td>
-                                <td>jane@example.com</td>
-                                <td>Moderator</td>
-                                <td>2026-01-28</td>
+                                <td>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">View</a>
+                                </td>
                             </tr>
+                            
                         </tbody>
                     </table>
                 </div>

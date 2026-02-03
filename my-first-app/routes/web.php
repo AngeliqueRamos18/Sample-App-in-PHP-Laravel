@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,9 +19,11 @@ use App\Http\Controllers\RegisterController;
 //Root route (first page to load upon starting the web)
 Route::get('/', [LoginController::class, 'showLoginForm'])
     ->middleware('guest');
-Route::get('/home', function () { return redirect('/dashboard'); });
+Route::get('/home', function () {
+    return redirect('/dashboard');
+});
 
-Route::get('/customizeLogin', [LoginController::class, 'showLoginForm'])->middleware('guest','prevent-back-history')->name('login');
+Route::get('/customizeLogin', [LoginController::class, 'showLoginForm'])->middleware('guest', 'prevent-back-history')->name('login');
 Route::post('/customizeLogin', [LoginController::class, 'login'])
     ->middleware('guest', 'prevent-back-history')
     ->name('login.submit');
@@ -34,15 +36,21 @@ Route::post('/register', [RegisterController::class, 'register'])
     ->middleware('guest')
     ->name('register.submit');
 
-Route::get('/contact', function () { return view('contact'); });
-Route::get('/welcome', function () { return view('welcome'); })
+Route::get('/contact', function () {
+    return view('contact');
+});
+Route::get('/welcome', function () {
+    return view('welcome');
+})
     ->middleware('auth');
 
-Route::get('/dashboard', function(){ return view('dashboard'); })
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})
     ->middleware('auth', 'prevent-back-history');
 
 //Logout
-use Illuminate\Support\Facades\Auth;
+
 
 Route::post('/logout', function () {
     Auth::logout();                // End the user session
@@ -50,5 +58,3 @@ Route::post('/logout', function () {
     request()->session()->regenerateToken(); // Prevent CSRF reuse
     return redirect('/customizeLogin')->with('success', 'You have been logged out.');
 })->name('logout');
-
-

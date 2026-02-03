@@ -21,9 +21,22 @@ body{
 }
 
 
+.CardTableContainer{
+    width: 100%;
+    max-width: 650px;
+    margin: 0
+}
+
 .CardTableContainer .card{
     --bs-card-border-width:0px;
     --bs-card-bg: #272b3d;
+}
+
+
+
+.table-wrapper table{
+    --bs-table-color: #ffffff;
+    --bs-table-striped-color: #ffffff;
 }
 
 /* Limit table height and enable vertical scroll */
@@ -40,3 +53,11 @@ body{
     background-color: #343a40;
     z-index: 1;
 }
+
+/* Make all table cells transparent */
+.sample-table > :not(caption) > * > * {
+    background-color: transparent !important;
+    box-shadow: none !important;   /* remove Bootstrap's inset shading */
+    border-bottom-width: 1px !important;
+}
+

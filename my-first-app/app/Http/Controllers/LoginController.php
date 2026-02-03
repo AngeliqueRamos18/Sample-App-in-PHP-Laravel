@@ -11,7 +11,7 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        if(Auth::check()){
+        if (Auth::check()) {
             return redirect('/dashboard');
         }
         return view('customizeLogin');
@@ -25,8 +25,22 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
 
-        // Attempt to authenticate using Laravel's Auth system
-        if (Auth::attempt($credentials)) { $request->session()->regenerate(); return redirect()->intended('/dashboard') ->with('success', 'Login Successful!'); }
+        // // Attempt to authenticate using Laravel's Auth system
+        // if (Auth::attempt($credentials)) {
+        //     $request->session()->regenerate();
+        //     return redirect()->intended('/dashboard')->with('success', 'Login Successful!');
+        // }
+
+        // Map to DB columns
+        $loginData = [
+            'Username' => $credentials['username'],
+            'password' => $credentials['password'],
+        ];
+
+        if (Auth::attempt($loginData)) {
+            $request->session()->regenerate();
+            return redirect()->intended('/dashboard')->with('success', 'Login Successful!');
+        }
 
         return back()->with('error', 'Invalid username or password.');
     }
@@ -35,5 +49,4 @@ class LoginController extends Controller
     {
         return '/dashboard';
     }
-
 }
